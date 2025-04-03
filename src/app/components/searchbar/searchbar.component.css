@@ -1,0 +1,48 @@
+.form {
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar {
+  border: 3px solid blue;
+  border-radius: 50px;
+  background-color: white;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+#search_button {
+  background-color: transparent;
+  border: 0;
+  color: blue;
+}
+
+#delete_button {
+  background-color: transparent;
+  border: 0;
+  color: blue;
+}
+
+.search-bar .form-control {
+  border-radius: 20px 0 0 20px;
+  background-color: transparent;
+  margin-left: 1.5px;
+}
+
+.form-control {
+  border: none;
+  background-color: transparent;
+  margin-left: 1.5px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.alert-text {
+  text-align: center;
+  justify-content: center;
+}

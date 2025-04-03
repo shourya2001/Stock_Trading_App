@@ -1,0 +1,58 @@
+<div class="container py-3">
+  <div class="row text-center">
+    <h2>Insider Sentiments</h2>
+  </div>
+  <div class="row justify-content-center">
+    <!-- Center the table -->
+    <div class="col-8">
+      <!-- Adjust column width as needed -->
+      <div class="table-responsive">
+        <table class="table text-center">
+          <!-- Center the text in columns -->
+          <thead>
+            <tr>
+              <th scope="col">{{ sentiments.symbol }}</th>
+              <th scope="col">MSPR</th>
+              <th scope="col">Change</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Total</th>
+              <td>{{ sentiments.totalMSPR }}</td>
+              <td>{{ sentiments.totalChange }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Positive</th>
+              <td>{{ sentiments.positiveMSPR }}</td>
+              <td>{{ sentiments.positiveChange }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Negative</th>
+              <td>{{ sentiments.negativeMSPR }}</td>
+              <td>{{ sentiments.negativeChange }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-top: 20px">
+  <div *ngIf="strongSell.length !== 0" class="col-xs-12 col-md-6">
+    <highcharts-chart
+      [Highcharts]="Highcharts"
+      [constructorType]="chartConstructor"
+      [options]="recommendationOptions"
+      style="width: 100%; height: 400px; display: block; text-align: center"
+    ></highcharts-chart>
+  </div>
+  <div *ngIf="actual.length !== 0" class="col-xs-12 col-md-6">
+        <highcharts-chart
+            [Highcharts]="Highcharts"
+            [options]="epsOptions"
+            style="width: 100%; height: 400px; display: flex"
+        ></highcharts-chart>
+    </div>
+</div>

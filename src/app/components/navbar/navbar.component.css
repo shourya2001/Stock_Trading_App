@@ -1,0 +1,39 @@
+/* * {
+    margin-bottom: 25px;
+} */
+.navbar-brand {
+  color: white;
+}
+
+.navbar {
+  background-color: blue;
+}
+
+.nav-items button {
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-items button:hover {
+  color: white;
+}
+
+.nav-items button:focus {
+  border: 2px solid white;
+}
+
+/* .navbar-nav > .active > a { 
+    border: 1px solid white ; 
+} */
+
+.phase-active {
+  border: 1px solid white;
+  border-radius: 15px;
+}
+
+.navbar-collapse.collapsing,
+.navbar-collapse.show {
+  display: block;
+  text-align: left;
+}

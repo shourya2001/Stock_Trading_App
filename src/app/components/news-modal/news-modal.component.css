@@ -1,0 +1,11 @@
+.modal-footer {
+    display: block;
+    border: 1px solid gray;
+    border-radius: 15px;
+    margin: 15px;
+}
+
+.close{
+    border: none;
+    background-color: transparent;
+}

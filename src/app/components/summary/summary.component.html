@@ -1,0 +1,47 @@
+<div class="container py-3">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="details">
+        <div>
+          <strong>High Price:</strong> <span>{{ quote?.h }}</span>
+        </div>
+        <div><strong>Low Price: </strong>{{ quote?.l }}</div>
+        <div><strong>Open Price:</strong> {{ quote?.o }}</div>
+        <div><strong>Prev. Closing :</strong> {{ quote?.pc }}</div>
+        <div class="row about text-center my-4"><span><strong>About the company</strong></span></div>
+        <div class="row text-center">
+          <span><strong>IPO start date: </strong> {{ stockDetails.ipo }}</span>
+        </div>
+      </div>
+      <div class="row text-center">
+        <span><strong>Industry: </strong> {{ stockDetails.finnhubIndustry }}</span>
+      </div>
+      <div class="row text-center">
+        <span>
+          <strong>Link: </strong>
+          <a href="{{ stockDetails.weburl }}">{{ stockDetails.weburl }}</a>
+        </span>
+      </div>
+      <div *ngIf="peers" class="row text-center">
+        <span><strong>Company Peers: </strong></span>
+      </div>
+      <div *ngIf="peers" class="text-center">
+        <span *ngFor="let peer of peers">
+          <a routerLink="/search/{{ peer }}"> {{ peer }}&nbsp;, </a>
+        </span>
+      </div>
+    </div>
+    <!-- End of first col-md-6 -->
+
+    <!-- Chart Column -->
+    <div class="col-md-6 text-center" *ngIf="hourlyData.length !== 0">
+      <highcharts-chart
+        [Highcharts]="Highcharts"
+        [constructorType]="chartConstructor"
+        [options]="chartOptions"
+        style="width: 100%; height: 400px; display: block"
+      ></highcharts-chart>
+    </div>
+  </div>
+  <!-- End of row -->
+</div>

@@ -1,0 +1,15 @@
+.card {
+  border-radius: 15px;
+  padding: 25px;
+}
+
+.close {
+  border: none;
+  background-color: transparent;
+  font-size: 26px;
+}
+
+.ticker {
+  font-size: 24px;
+  margin-top: -20px;
+}

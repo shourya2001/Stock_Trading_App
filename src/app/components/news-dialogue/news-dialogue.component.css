@@ -1,0 +1,22 @@
+/* news-dialog.component.css */
+.news-dialog-content {
+    font-family: Arial, sans-serif;
+  }
+  
+  .date {
+    color: #666;
+    float: right;
+    font-size: 0.8rem;
+  }
+  
+  .news-dialog-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem;
+  }
+  
+  .share-buttons button {
+    margin-right: 10px;
+  }
+  

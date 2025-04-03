@@ -1,0 +1,126 @@
+<!-- <div class="search-container">
+  <form (submit)="searchStock(tickerInput.value)">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter a ticker symbol</mat-label>
+      <input
+        type="text"
+        class="input"
+        placeholder="Search for a stock"
+        aria-label="Stock"
+        matInput
+        #tickerInput
+        [formControl]="tickerFormControl"
+        [matAutocomplete]="auto"
+      />
+      <button mat-icon-button matSuffix type="submit">
+        <mat-icon>search</mat-icon>
+      </button>
+
+      <button mat-icon-button matSuffix (click)="clearInput($event)">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="onOptionSelected($event)"
+      >
+        <mat-option *ngIf="isLoading"
+          ><mat-spinner [diameter]="20"></mat-spinner
+        ></mat-option>
+        <mat-option
+          *ngFor="let option of filteredOptions | async"
+          [value]="option.symbol"
+        >
+          {{ option.displaySymbol }} | {{ option.description }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div> -->
+
+<!-- <div class="search_heading">STOCK SEARCH</div>
+<div class="container-fluid">
+  <form (submit)="searchStock(tickerInput.value)">
+    <div class="form_outline">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter a ticker symbol</mat-label>
+        <input
+          type="text"
+          class="input"
+          placeholder="Search for a stock"
+          aria-label="Stock"
+          matInput
+          #tickerInput
+          [formControl]="tickerFormControl"
+          [matAutocomplete]="auto"
+        />
+        <button mat-icon-button matSuffix type="submit">
+          <mat-icon>search</mat-icon>
+        </button>
+  
+        <button mat-icon-button matSuffix (click)="clearInput($event)">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="onOptionSelected($event)"
+        >
+          <mat-option *ngIf="isLoading"
+            ><mat-spinner [diameter]="20"></mat-spinner
+          ></mat-option>
+          <mat-option
+            *ngFor="let option of filteredOptions | async"
+            [value]="option.symbol"
+          >
+            {{ option.displaySymbol }} | {{ option.description }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </form>
+</div> -->
+
+<div class="container mt-3">
+  <h2 class="text-center mb-4">STOCK SEARCH</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form class="form" (submit)="searchStock(tickerInput.value)">
+        <div class="input-group mb-3 search-bar">
+          <input
+            type="text"
+            placeholder="Enter stock ticker symbol"
+            aria-label="Stock"
+            class="form-control"
+            #tickerInput
+            [formControl]="tickerFormControl"
+            [matAutocomplete]="auto"
+          />
+          <button mat-icon-button matSuffix id="search_button" type="submit">
+            <mat-icon>search</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            matSuffix
+            id="delete_button"
+            (click)="clearInput($event)"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-autocomplete
+            #auto="matAutocomplete"
+            (optionSelected)="onOptionSelected($event)"
+          >
+            <mat-option *ngIf="isLoading"
+              ><mat-spinner [diameter]="20"></mat-spinner
+            ></mat-option>
+            <mat-option
+              *ngFor="let option of filteredOptions | async"
+              [value]="option.symbol"
+            >
+              {{ option.displaySymbol }} | {{ option.description }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

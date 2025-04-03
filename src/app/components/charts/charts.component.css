@@ -1,0 +1,23 @@
+/* .chart{
+    width: 100%;
+    height:600px;
+} */
+
+.container {
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.chart-wrapper{
+    justify-content: center !important;
+    align-items: center !important;
+    width:100%;
+}
+.highcharts-container{
+    width: 100% !important;
+  }
+  
+  .highcharts-root{
+    width: 100% !important;
+  }

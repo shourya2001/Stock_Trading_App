@@ -1,0 +1,133 @@
+<!-- <p>details works!</p> -->
+
+<div class="container">
+  <app-searchbar></app-searchbar>
+  <ngb-alert
+    *ngIf="!isValid"
+    type="danger"
+    style="margin-top: 60px; text-align: center"
+    >No data found. Please enter a valid ticker.</ngb-alert
+  >
+  <ngb-alert
+    *ngIf="buySuccess"
+    #selfClosingAlert
+    type="success"
+    style="margin-top: 60px; text-align: center"
+    >{{ portfolioAlertMessage }}</ngb-alert
+  >
+  <ngb-alert
+    *ngIf="sellSuccess"
+    #selfClosingAlert
+    type="danger"
+    style="margin-top: 60px; text-align: center"
+    >{{ portfolioAlertMessage }}</ngb-alert
+  >
+  <ngb-alert
+    *ngIf="addedToWatchlist"
+    #selfClosingAlert
+    type="success"
+    style="margin-top: 60px; text-align: center"
+    >{{ watchlistAlertMessage }}</ngb-alert
+  >
+  <ngb-alert
+    *ngIf="removedFromWatchlist"
+    #selfClosingAlert
+    type="danger"
+    style="margin-top: 60px; text-align: center"
+    >{{ watchlistAlertMessage }}</ngb-alert
+  >
+  <div class="row" *ngIf="isValid && stockDetails && quote">
+    <div class="col-4 text-center">
+      <div class="row">
+        <h2>
+          {{ stockDetails.ticker }}
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="toggleWatchlist()"
+            [ngClass]="isInWatchlist ? 'star-icon' : 'star-border-icon'"
+          >
+            <mat-icon>
+              {{ isInWatchlist ? "star" : "star_border" }}
+            </mat-icon>
+          </button>
+        </h2>
+      </div>
+      <div class="row">
+        <h5>{{ stockDetails.name }}</h5>
+      </div>
+      <div class="row mb-2">
+        <div>{{ stockDetails.exchange }}</div>
+      </div>
+      <div class="row">
+        <span>
+          <button
+            class="btn btn-success btn-sm me-2"
+            (click)="openTransactionDialog(quote, 'buy')"
+          >
+            Buy
+          </button>
+
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="openTransactionDialog(quote, 'sell')"
+            *ngIf="isInPortfolio"
+          >
+            Sell
+          </button>
+        </span>
+      </div>
+    </div>
+    <div class="col-4 d-flex justify-content-center">
+      <img [src]="stockDetails.logo" alt="Logo" class="img-fluid" />
+    </div>
+    <div class="col-4 text-center align-items-center">
+      <div
+        [ngClass]="{ 'text-success': quote.d >= 0, 'text-danger': quote.d < 0 }"
+      >
+        <h2>{{ quote.c | currency }}</h2>
+        <h5 *ngIf="quote.d >= 0">▲ {{ quote.d }} ({{ quote.percent }}%)</h5>
+        <h5 *ngIf="quote.d < 0">▼ {{ quote.d }} ({{ quote.dp }}%)</h5>
+      </div>
+      <div>{{ convertUnixTimestampToDateTime(quote.t_now) }}</div>
+    </div>
+  </div>
+  <div class="row my-3" *ngIf="isValid">
+    <div class="col text-center my-3">
+      <span *ngIf="isMarketClosed" class="text-danger"
+        >Market Closed on {{ marketCloseTime }}</span
+      >
+      <span *ngIf="!isMarketClosed" class="text-success">Market Open</span>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="isValid && quote && stockDetails">
+  <div class="row">
+    <mat-tab-group>
+      <mat-tab label="Summary">
+        <app-summary
+          [quote]="quote"
+          [stockDetails]="stockDetails"
+          [peers]="peers"
+          [ticker]="this.ticker || ''"
+          [change]="quote.d"
+        ></app-summary>
+      </mat-tab>
+      <mat-tab label="Top News">
+        <app-news [ticker]="this.ticker || ''"></app-news>
+      </mat-tab>
+      <mat-tab label="Charts">
+        <app-charts
+          *ngIf="ohlc.length > 0 && volume.length > 0"
+          [ticker]="this.ticker || ''"
+          [volumeData]="volume"
+          [ohlcData]="ohlc"
+        ></app-charts>
+      </mat-tab>
+      <mat-tab label="Insights">
+        <app-insights [ticker]="this.ticker || ''"></app-insights>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

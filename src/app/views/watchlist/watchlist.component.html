@@ -1,0 +1,76 @@
+<!-- <p>watchlist works!</p> -->
+
+<div class="container py-3">
+  <h2>My Watchlist</h2>
+  <div class="container">
+    <div
+      class="d-flex row justify-content-center align-items-center align-self-center"
+    >
+      <div *ngIf="isLoading">
+        <mat-spinner [diameter]="50"></mat-spinner>
+      </div>
+    </div>
+  </div>
+
+  <ngb-alert
+    *ngIf="isEmpty"
+    type="warning"
+    style="margin-top: 60px; text-align: center"
+  >
+    Currently you don't have any stock in your watchlist.
+  </ngb-alert>
+
+  <!-- credits: chatgpt - write html code using angular bootstrap to produce cards as shown in the image -->
+
+  <div class="container mt-4">
+    <div *ngFor="let item of data">
+      <div class="card mb-3">
+        <div class="row">
+          <div class="col">
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="deleteStock(item.ticker)"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+        <a
+          routerLink="/search/{{ item.ticker }}"
+          style="text-decoration: none; color: black"
+        >
+          <div class="row my-4">
+            <div class="col">
+              <div class="container">
+                <div class="ticker">{{ item.ticker | uppercase }}</div>
+                {{ item.name }}
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="d-flex justify-content-center mt-3">
+                <div class="text-center">
+                  <h5
+                    class="mb-0"
+                    [class.text-success]="item.d > 0"
+                    [class.text-danger]="item.d < 0"
+                  >
+                    {{ item.c | currency : "USD" }}
+                  </h5>
+                  <small
+                    class="{{ item.d < 0 ? 'text-danger' : 'text-success' }}"
+                  >
+                    {{ item.d | number : "1.2-2" }} ({{
+                      item.dp | number : "1.2-2"
+                    }}%)
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
